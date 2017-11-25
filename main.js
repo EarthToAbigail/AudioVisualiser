@@ -95,7 +95,9 @@
 
       // Draw center rectangle
       ctx.strokeStyle = 'fuchsia';
-      ctx.strokeRect(140, 0, 30 + average, 30 + average);
+      ctx.strokeRect(180, 30, 15 + (average/2), 15 + (average/2));
+      ctx.strokeStyle = '#ffffb3';
+      ctx.strokeRect(120, 60, 15 - (average/2), 15 - (average/2));
 
       // If we ever want to go back to pure html/css (no canvas)
       // volumeBars.style.height = average + 20 + "px";
