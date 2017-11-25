@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content__title {
+  margin-top: 5%;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Audiowide', cursive;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
+
+#container {
+  height: 340px;
+}
+
+.content--volumebar {
+  height: 20px;
+  width: 90%;
+  margin: 0 5% 0 5%;
+  background: linear-gradient(purple, aqua);
+  height: calc(100% - 40px);
+  position: absolute;
+  bottom: 10%;
+  text-align: center;
+  /*padding: 5px;*/
+}
