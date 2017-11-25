@@ -1,13 +1,6 @@
 // check if the default naming is enabled, if not use the chrome one.
-    if (!window.AudioContext) {
-        if (!window.webkitAudioContext) {
-            alert('no audiocontext found');
-        } else {
-          window.AudioContext = window.webkitAudioContext;
-        }
-    }
 
-    var context = new AudioContext();
+    var context = new (window.AudioContext || window.webkitAudioContext)();
     var audioBuffer;
     var sourceNode;
 
@@ -82,7 +75,7 @@
       var average = getAverageVolume(array);
 
       //For drawing simple volume bar without canvas
-      // var volumeBars = document.getElementById("volumeBar"); 
+      // var volumeBars = document.getElementById("volumeBar");
 
       var gradient = ctx.createLinearGradient(0,0,0,300);
       gradient.addColorStop(1,'#ffffff');
@@ -100,11 +93,31 @@
       // ctx.fillRect(0, 130 - average, 25, 130); // Used for creating a simple volume bar
       drawSpectrum(array); //This function allows to draw a frequency spectrum
 
+      // Draw center rectangle
+      ctx.strokeStyle = 'fuchsia';
+      ctx.strokeRect(140, 0, 30 + average, 30 + average);
+
       // If we ever want to go back to pure html/css (no canvas)
       // volumeBars.style.height = average + 20 + "px";
       // volumeBars.innerHTML = Math.floor(average);
 
     }
+
+    // function drawCircles() {
+    //   // for (var i = 0; i < 6; i++) {
+    //   //   for (var j = 0; j < 6; j++) {
+    //   //       ctx.strokeStyle = 'rgb(0,' + Math.floor(255 - 42.5 * i) + ',' +
+    //   //                         Math.floor(255 - 42.5 * j) + ')';
+    //   //       ctx.beginPath();
+    //   //       ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
+    //   //       ctx.stroke();
+    //   //   }
+    //   // }
+    //   ctx.beginPath();
+    //   ctx.arc(150, 50, 30, 0, Math.PI * 2, true);
+    //   ctx.strokeStyle = '#ffff99';
+    //   ctx.stroke();
+    // }
 
     function drawSpectrum(array) {
       for (var i = 0; i < array.length; i++) {
