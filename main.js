@@ -13,7 +13,7 @@
 
     // load the sound
     setupAudioNodes();
-    loadSound("Paradise.mp3");
+    loadSound("AlteredReality.mp3");
 
     function setupAudioNodes() {
         // Setup a javascript node
@@ -24,7 +24,8 @@
         //setup analyser
         analyser = context.createAnalyser();
         analyser.smoothingTimeConstant = 0.5;
-        analyser.fftSize = 1024;
+        // analyser.fftSize = 1024;
+        analyser.fftSize = 512; //frequency spectrum
 
         // create a buffer source node
         sourceNode = context.createBufferSource();
@@ -67,20 +68,49 @@
         console.log(e);
     }
 
+    //Creating our drawing area
+    var canvas = document.getElementById('fft');
+    var ctx = canvas.getContext('2d');
+
     // when the javascript node is called we use information from the analyzer node
     // to draw the volume
     jsNode.onaudioprocess = function() {
 
-       // get the average, bincount is fftsize / 2
+      // get the average, bincount is fftsize / 2
       var array = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(array);
       var average = getAverageVolume(array);
 
-      var volumeBars = document.getElementById("volumeBar");
+      //For drawing simple volume bar without canvas
+      // var volumeBars = document.getElementById("volumeBar"); 
 
-      volumeBars.style.height = average + 5 + "px";
-      volumeBars.innerHTML = Math.floor(average);
+      var gradient = ctx.createLinearGradient(0,0,0,300);
+      gradient.addColorStop(1,'#ffffff');
+      gradient.addColorStop(0.75,'#ff00ff');
+      gradient.addColorStop(0.25,'#00ffff');
+      gradient.addColorStop(0,'#ffffff');
 
+      // clear the current state
+      // ctx.clearRect(0, 0, 60, 130); //for simple volume bar
+      ctx.clearRect(0, 0, 1000, 325);
+      // set the fill style
+      ctx.fillStyle = gradient;
+
+      // create the meters
+      // ctx.fillRect(0, 130 - average, 25, 130); // Used for creating a simple volume bar
+      drawSpectrum(array); //This function allows to draw a frequency spectrum
+
+      // If we ever want to go back to pure html/css (no canvas)
+      // volumeBars.style.height = average + 20 + "px";
+      // volumeBars.innerHTML = Math.floor(average);
+
+    }
+
+    function drawSpectrum(array) {
+      for (var i = 0; i < array.length; i++) {
+        var value = array[i];
+        ctx.fillRect(i * 5, 325 - value, 3, 325);
+      }
     }
 
     function getAverageVolume(array) {

@@ -17,12 +17,28 @@
 body {
   background-color: black;
 }
-
-#container {
-  height: 340px;
+.canvas__container{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
-.content--volumebar {
+canvas {
+  width: 90%;
+  height: 400px;
+  margin: 0 5% 0 5%;
+  /*bottom: 0;*/
+}
+
+/* If we ever want to return to pure CSS (no canvas) */
+
+/*#container {
+  height: 340px;
+}*/
+
+/* Creating simple volume bar*/
+
+/*.content--volumebar {
   height: 20px;
   width: 90%;
   margin: 0 5% 0 5%;
@@ -31,5 +47,5 @@ body {
   position: absolute;
   bottom: 10%;
   text-align: center;
-  /*padding: 3%;*/
-}
+  padding: 3%;
+}*/
