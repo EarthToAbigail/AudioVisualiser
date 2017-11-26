@@ -95,10 +95,15 @@
 
       // Draw center rectangle
       ctx.strokeStyle = 'fuchsia';
-      ctx.strokeRect(180, 30, 15 + (average/2), 15 + (average/2));
+      ctx.strokeRect(180, 40, 15 + (average/2), 15 + (average/2));
       ctx.strokeStyle = '#ffffb3';
       ctx.strokeRect(120, 60, 15 - (average/2), 15 - (average/2));
-
+      // var fontSize = 12 + average;
+      ctx.font = "20px Arial";
+      ctx.strokeStyle = '#99ff99';
+      ctx.strokeText("E", 105 - ((average / Math.PI) / 2), 25 + ((average / Math.PI) / 2));
+      ctx.strokeText("+",142 + ((average / Math.PI) / 2), 25 - ((average / Math.PI) / 2));
+      ctx.strokeText("A",180 - ((average / Math.PI) / 2), 25 + ((average / Math.PI) / 2));
       // If we ever want to go back to pure html/css (no canvas)
       // volumeBars.style.height = average + 20 + "px";
       // volumeBars.innerHTML = Math.floor(average);
