@@ -11,7 +11,7 @@
     function setupAudioNodes() {
         // Setup a javascript node
         jsNode = context.createScriptProcessor(2048, 1, 1);
-        // Connect to destintion else it isn't called
+        // Connect to destination else it isn't called
         jsNode.connect(context.destination);
 
         //setup analyser
@@ -92,41 +92,33 @@
       // create the meters
       // ctx.fillRect(0, 130 - average, 25, 130); // Used for creating a simple volume bar
       drawSpectrum(array); //This function allows to draw a frequency spectrum
+      drawRectangles(average);
+      drawLetters(average);
 
-      // Draw center rectangle
-      ctx.strokeStyle = 'fuchsia';
-      ctx.strokeRect(180, 40, 15 + (average/2), 15 + (average/2));
-      ctx.strokeStyle = '#ffff80';
-      ctx.strokeRect(120, 60, 15 - (average/2), 15 - (average/2));
-
-      // var fontSize = 12 + average;
-      ctx.font = "20px Arial";
-      ctx.strokeStyle = '#66ff99';
-      // ctx.strokeStyle = gradient2;
-      ctx.strokeText("E", 105 - ((average / Math.PI) / 2), 25 + ((average / Math.PI) / 2));
-      ctx.strokeText("+",142 , 25 + (average / 2.5));
-      ctx.strokeText("A",180 + (average / Math.PI), 25 + ((average / Math.PI)*2));
       // If we ever want to go back to pure html/css (no canvas)
       // volumeBars.style.height = average + 20 + "px";
       // volumeBars.innerHTML = Math.floor(average);
 
     }
 
-    // function drawCircles() {
-    //   // for (var i = 0; i < 6; i++) {
-    //   //   for (var j = 0; j < 6; j++) {
-    //   //       ctx.strokeStyle = 'rgb(0,' + Math.floor(255 - 42.5 * i) + ',' +
-    //   //                         Math.floor(255 - 42.5 * j) + ')';
-    //   //       ctx.beginPath();
-    //   //       ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
-    //   //       ctx.stroke();
-    //   //   }
-    //   // }
-    //   ctx.beginPath();
-    //   ctx.arc(150, 50, 30, 0, Math.PI * 2, true);
-    //   ctx.strokeStyle = '#ffff99';
-    //   ctx.stroke();
-    // }
+    function drawLetters(value) {
+      ctx.font = "20px Arial";
+      ctx.strokeStyle = '#66ff99';
+
+      ctx.strokeText("E", 105 - ((value / Math.PI) / 2), 25 + ((value / Math.PI) / 2));
+      ctx.strokeText("+",142 , 25 + (value / 2.5));
+      ctx.strokeText("A",180 + (value / Math.PI), 25 + ((value / Math.PI)*2));
+    }
+
+    function drawRectangles(value) {
+      // for (var i = 0; i < array.length; i++) {
+        // var value = array[i];
+        ctx.strokeStyle = 'fuchsia';
+        ctx.strokeRect(180, 40, 15 + (value/2), 15 + (value/2));
+        ctx.strokeStyle = '#ffff80';
+        ctx.strokeRect(120, 60, 15 - (value/2), 15 - (value/2));
+      // }
+    }
 
     function drawSpectrum(array) {
       for (var i = 0; i < array.length; i++) {
