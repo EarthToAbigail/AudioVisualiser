@@ -23,6 +23,9 @@
         // create a buffer source node
         sourceNode = context.createBufferSource();
 
+        // var myAudio = document.getElementById('audio-element');
+        // sourceNode = context.createMediaElementSource(myAudio);
+
         //Connect the source to the analyser
         sourceNode.connect(analyser);
 

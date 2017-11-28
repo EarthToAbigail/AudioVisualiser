@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function handleError(err) {
+function handleError(err, res) {
   console.log(err);
   let message = "Sorry, there was an error on our side...";
   res.writeHead(500, {'Content-Type': 'text/html'});
@@ -14,7 +14,7 @@ function handleHome(req, res) {
 
     fs.readFile(filePath, (err, file) => {
       if (err) {
-        handleError(err);
+        handleError(err, res);
       }
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(file);
@@ -38,17 +38,16 @@ function handlePublic(req, res) {
 
     let types = {
       js: 'application/javascript',
-      css: 'text/css'
+      css: 'text/css',
+      ico: 'image/x-icon'
     };
 
     let filePath = path.join(__dirname, req.url);
-    console.log(filePath);
-
     let ext = filePath.split('.')[1];
 
     fs.readFile(filePath, (err, file) => {
       if (err) {
-        handleError(err);
+        handleError(err, res);
       }
       res.writeHead(200, {'Content-Type': types[ext]});
       res.end(file);
