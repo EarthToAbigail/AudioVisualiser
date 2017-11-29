@@ -7,7 +7,8 @@ function router(req, res) {
   if (url === '/') {
     handleHome(req, res);
   }
-  else if (url === '/AlteredReality.mp3') {
+  // else if (url.split('.')[1] === 'mp3') {
+  else if (url.split('?')[0] === '/submit') {
     handleMusic(req, res);
   }
   else {

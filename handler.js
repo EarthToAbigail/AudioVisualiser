@@ -22,10 +22,11 @@ function handleHome(req, res) {
 }
 
 function handleMusic(req, res) {
-    let filePath = path.join(__dirname, 'AlteredReality.mp3');
+    var file = req.url.split('=')[1];
+    let filePath = path.join(__dirname, file);
     let stats = fs.statSync(filePath);
 
-    res.writeHead(200, {
+    res.writeHead(307, {
         'Content-Type': 'audio/mpeg',
         'Content-Length': stats.size
     });
@@ -37,9 +38,11 @@ function handleMusic(req, res) {
 function handlePublic(req, res) {
 
     let types = {
+      html: 'text/html',
       js: 'application/javascript',
       css: 'text/css',
-      ico: 'image/x-icon'
+      ico: 'image/x-icon',
+      mp3: 'audio/mpeg'
     };
 
     let filePath = path.join(__dirname, req.url);

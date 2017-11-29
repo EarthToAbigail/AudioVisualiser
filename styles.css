@@ -4,9 +4,32 @@
   box-sizing: border-box;
 }
 
-/*.content__title {
-  margin-top: 5%;
-}*/
+body {
+  text-align: center;
+}
+
+.content__form {
+  margin-top: 2%;
+}
+
+.content__menu {
+  border-radius: 20px;
+  font-size: 1rem;
+  font-family: 'VT323', monospace;
+  background-color: aqua;
+  border: none;
+  opacity: 0.5;
+}
+
+button {
+  padding: 3px;
+  font-size: 1rem;
+  border-radius: 7px;
+  font-family: 'VT323', monospace;
+  background-color: fuchsia;
+  border: none;
+  opacity: 0.5;
+}
 
 .title {
   text-align: center;
@@ -28,6 +51,10 @@ canvas {
   height: 100%;
   margin: 0 5% 0 5%;
   /*bottom: 0;*/
+}
+
+.content__menu {
+
 }
 
 /* If we ever want to return to pure CSS (no canvas) */

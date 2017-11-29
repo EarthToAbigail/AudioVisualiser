@@ -4,9 +4,17 @@
     var audioBuffer;
     var sourceNode;
 
-    // load the sound
     setupAudioNodes();
-    loadSound("AlteredReality.mp3");
+
+    // load the sound
+    document.getElementById('submitBtn').addEventListener('click', function(){
+      event.preventDefault();
+      var audio = document.getElementById('tracks').value;
+      var audioPath = "/submit?track=" + audio;
+
+      loadSound(audioPath);
+
+    });
 
     function setupAudioNodes() {
         // Setup a javascript node
@@ -38,16 +46,16 @@
 
     // load the specified sound
     function loadSound(url) {
+
         var request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.responseType = 'arraybuffer';
 
         // When loaded decode the data
         request.onload = function() {
-
             // decode the data
             context.decodeAudioData(request.response, function(buffer) {
-                // when the audio is decoded play the sound
+                  // when the audio is decoded play the sound
                 playSound(buffer);
             }, onError);
         }
@@ -55,8 +63,10 @@
     }
 
     function playSound(buffer) {
-        sourceNode.buffer = buffer;
-        sourceNode.start(0);
+
+      sourceNode.buffer = buffer;
+      sourceNode.start(0);
+
     }
 
     // log if an error occurs

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <link rel="icon" href="./E_A-Logo.ico" type="image/x-icon">
     <title>Audio Reactive Visualizer</title>
@@ -12,11 +13,14 @@
     <!-- <div class="content__title">
     <h1 class="title">Audio VIsuaLizEr *** 3arth2Ab1gaIL</h1>
   </div> -->
-  <!-- <audio id="audio-element"
-           src="AlteredReality.mp3"
-           controls="true"
-           style="width: 512px;">
-    </audio> -->
+  <form class="content__form" id="form">
+  <select class="content__menu" id="tracks" form="form">
+    <option value="Choose">Choose a track</option>
+    <option value="AlteredReality.mp3">Altered Reality</option>
+    <option value="Paradise.mp3">Paradise</option>
+  </select>
+  <button id="submitBtn" type="submit">Play</button>
+</form>
   <div class="canvas__container">
     <canvas id="fft"></canvas>
     <!-- <canvas id="center"></canvas> -->
