@@ -2,11 +2,11 @@
   "name": "audiovisualiser",
   "version": "1.0.0",
   "description": "Simple Frequency Spectrum Visualiser",
-  "main": "main.js",
+  "main": "public/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "devstart": "nodemon server.js"
+    "start": "node ./src/server.js",
+    "devstart": "nodemon ./src/server.js"
   },
   "repository": {
     "type": "git",
