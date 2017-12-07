@@ -12,7 +12,7 @@ document.getElementById('submitBtn').addEventListener('click', function(event) {
   var audio = document.getElementById('tracks').value;
   if (audio === 'Choose') {
     var helpMsg = document.createElement('p');
-    helpMsg.textContent = 'Please select a track from the menu.';
+    helpMsg.textContent = 'Please reload the page and select a track from the menu.';
     document.getElementById('message').appendChild(helpMsg);
   }
   else {

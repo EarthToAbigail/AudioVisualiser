@@ -23,20 +23,16 @@ const handleHome = (req, res) => {
 const handleMusic = (req, res) => {
   const file = req.url.split('=')[1];
 
-  // if (file.indexOf('Choose') > -1) {
-  //   res.writeHead(307, { Location: '/' });
-  // } else {
-    const filePath = path.join(__dirname, '..', 'music', file);
-    const stats = fs.statSync(filePath);
+  const filePath = path.join(__dirname, '..', 'music', file);
+  const stats = fs.statSync(filePath);
 
-    res.writeHead(200, {
-      'Content-Type': 'audio/mpeg',
-      'Content-Length': stats.size,
-    });
+  res.writeHead(200, {
+    'Content-Type': 'audio/mpeg',
+    'Content-Length': stats.size,
+  });
 
-    const readStream = fs.createReadStream(filePath);
-    readStream.pipe(res);
-  // }
+  const readStream = fs.createReadStream(filePath);
+  readStream.pipe(res);
 };
 
 const handlePublic = (req, res) => {
