@@ -22,16 +22,21 @@ const handleHome = (req, res) => {
 
 const handleMusic = (req, res) => {
   const file = req.url.split('=')[1];
-  const filePath = path.join(__dirname, '..', 'music', file);
-  const stats = fs.statSync(filePath);
 
-  res.writeHead(307, {
-    'Content-Type': 'audio/mpeg',
-    'Content-Length': stats.size,
-  });
+  // if (file.indexOf('Choose') > -1) {
+  //   res.writeHead(307, { Location: '/' });
+  // } else {
+    const filePath = path.join(__dirname, '..', 'music', file);
+    const stats = fs.statSync(filePath);
 
-  const readStream = fs.createReadStream(filePath);
-  readStream.pipe(res);
+    res.writeHead(200, {
+      'Content-Type': 'audio/mpeg',
+      'Content-Length': stats.size,
+    });
+
+    const readStream = fs.createReadStream(filePath);
+    readStream.pipe(res);
+  // }
 };
 
 const handlePublic = (req, res) => {
